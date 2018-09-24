@@ -1,7 +1,9 @@
 package ch03.com.springrecipes.court.config;
 
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
@@ -31,5 +33,12 @@ public class I18NConfiguration implements WebMvcConfigurer {
         cookieLocaleResolver.setCookieMaxAge(3600);
         cookieLocaleResolver.setDefaultLocale(new Locale("en"));
         return cookieLocaleResolver;
+    }
+
+    @Bean
+    public MessageSource messageSource() {
+        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+        messageSource.setBasename("messages");
+        return messageSource;
     }
 }
