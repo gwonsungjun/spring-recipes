@@ -8,13 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-public class MeasurementInterceptor extends HandlerInterceptorAdapter {
+/*public class MeasurementInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         long startTime = System.currentTimeMillis();
         request.setAttribute("startTime", startTime);
-        return true;    }
+        return true;
+    }
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
@@ -25,9 +26,9 @@ public class MeasurementInterceptor extends HandlerInterceptorAdapter {
         modelAndView.addObject("handlingTime", endTime - startTime);
     }
 
-}
+}*/
 
-/*public class MeasurementInterceptor implements HandlerInterceptor {
+public class MeasurementInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -49,4 +50,4 @@ public class MeasurementInterceptor extends HandlerInterceptorAdapter {
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
 
     }
-}*/
+}
