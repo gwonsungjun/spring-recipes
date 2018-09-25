@@ -1,9 +1,16 @@
 package ch03.com.springrecipes.court.domain;
 
+import javax.validation.constraints.NotNull;
+
 public class Player {
 
+    @NotNull
     private String name;
+
+    @NotNull
     private String phone;
+
+    public Player() { }
 
     public Player(String name, String phone) {
         this.name = name;

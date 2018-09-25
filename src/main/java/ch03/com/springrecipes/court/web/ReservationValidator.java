@@ -1,6 +1,7 @@
-package ch03.com.springrecipes.court.service;
+package ch03.com.springrecipes.court.web;
 
 import ch03.com.springrecipes.court.domain.Reservation;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
@@ -8,6 +9,7 @@ import org.springframework.validation.Validator;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 
+@Component
 public class ReservationValidator implements Validator {
 
     @Override

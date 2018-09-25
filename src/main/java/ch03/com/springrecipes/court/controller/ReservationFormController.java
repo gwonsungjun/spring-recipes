@@ -4,7 +4,7 @@ import ch03.com.springrecipes.court.domain.Player;
 import ch03.com.springrecipes.court.domain.Reservation;
 import ch03.com.springrecipes.court.domain.SportType;
 import ch03.com.springrecipes.court.service.ReservationService;
-import ch03.com.springrecipes.court.service.ReservationValidator;
+import ch03.com.springrecipes.court.web.ReservationValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -44,7 +45,7 @@ public class ReservationFormController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String submitForm(@ModelAttribute("reservation") @Validated Reservation reservation, BindingResult result, SessionStatus status){
+    public String submitForm(@ModelAttribute("reservation") @Valid Reservation reservation, BindingResult result, SessionStatus status){
         if (result.hasErrors()) {
             return "reservationForm";
         } else{

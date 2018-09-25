@@ -1,5 +1,6 @@
 package ch03.com.springrecipes.court.service;
 
+import ch03.com.springrecipes.court.domain.PeriodicReservation;
 import ch03.com.springrecipes.court.domain.Player;
 import ch03.com.springrecipes.court.domain.Reservation;
 import ch03.com.springrecipes.court.domain.SportType;
@@ -62,6 +63,21 @@ public class ReservationServiceImpl implements ReservationService {
                 return SOCCER;
             default:
                 return null;
+        }
+    }
+
+    @Override
+    public void makePeridoic(PeriodicReservation periodicReservation) throws ReservationNotAvailableException {
+        LocalDate fromDate = periodicReservation.getFormDate();
+        while(fromDate.isBefore(periodicReservation.getToDate())){
+            Reservation reservation = new Reservation();
+            reservation.setCourtName(periodicReservation.getCourtName());
+            reservation.setDate(fromDate);
+            reservation.setHour(periodicReservation.getHour());
+            reservation.setPlayer(periodicReservation.getPlayer());
+            make(reservation);
+
+            fromDate = fromDate.plusMonths(periodicReservation.getPeriod());
         }
     }
 }
