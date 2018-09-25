@@ -7,12 +7,13 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
-public class ReservationServiceImpl implements ReservationService{
+public class ReservationServiceImpl implements ReservationService {
 
     public static final SportType TENNIS = new SportType(1, "Tennis");
     public static final SportType SOCCER = new SportType(2, "Soccer");
@@ -20,7 +21,7 @@ public class ReservationServiceImpl implements ReservationService{
     private final List<Reservation> reservations = new ArrayList<>();
 
     // DB 연동 대신 하드코딩
-    public ReservationServiceImpl(){
+    public ReservationServiceImpl() {
         reservations.add(new Reservation("Tennis #1", LocalDate.of(2008, 1, 14), 16, new Player("Roger", "N/A"), TENNIS));
         reservations.add(new Reservation("Tennis #2", LocalDate.of(2008, 1, 14), 20, new Player("James", "N/A"), TENNIS));
     }
@@ -30,5 +31,37 @@ public class ReservationServiceImpl implements ReservationService{
         return this.reservations.stream()
                 .filter(reservation -> Objects.equals(reservation.getCourtName(), courName))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void make(Reservation reservation) throws ReservationNotAvailableException {
+        long cnt = reservations.stream()
+                .filter(made -> Objects.equals(made.getCourtName(), reservation.getCourtName()))
+                .filter(made -> Objects.equals(made.getDate(), reservation.getDate()))
+                .filter(made -> made.getHour() == reservation.getHour())
+                .count();
+
+        if (cnt > 0) {
+            throw new ReservationNotAvailableException(reservation.getCourtName(), reservation.getDate(), reservation.getHour());
+        } else {
+            reservations.add(reservation);
+        }
+    }
+
+    @Override
+    public List<SportType> getAllSportType() {
+        return Arrays.asList(TENNIS, SOCCER);
+    }
+
+    @Override
+    public SportType getSportType(int sportTypeId) {
+        switch (sportTypeId) {
+            case 1:
+                return TENNIS;
+            case 2:
+                return SOCCER;
+            default:
+                return null;
+        }
     }
 }
