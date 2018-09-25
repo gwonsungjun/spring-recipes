@@ -1,6 +1,6 @@
 package ch03.com.springrecipes.court.config;
 
-import ch03.com.springrecipes.court.service.ReservationNotAvailableException;
+import ch03.com.springrecipes.court.web.ReservationNotAvailableException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;

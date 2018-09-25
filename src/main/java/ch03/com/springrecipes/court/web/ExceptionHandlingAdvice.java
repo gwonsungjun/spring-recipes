@@ -1,6 +1,5 @@
 package ch03.com.springrecipes.court.web;
 
-import ch03.com.springrecipes.court.service.ReservationNotAvailableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 

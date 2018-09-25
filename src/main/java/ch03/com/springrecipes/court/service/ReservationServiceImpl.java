@@ -4,13 +4,11 @@ import ch03.com.springrecipes.court.domain.PeriodicReservation;
 import ch03.com.springrecipes.court.domain.Player;
 import ch03.com.springrecipes.court.domain.Reservation;
 import ch03.com.springrecipes.court.domain.SportType;
+import ch03.com.springrecipes.court.web.ReservationNotAvailableException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -79,5 +77,12 @@ public class ReservationServiceImpl implements ReservationService {
 
             fromDate = fromDate.plusMonths(periodicReservation.getPeriod());
         }
+    }
+
+    @Override
+    public List<Reservation> findByDate(Date date) {
+        return reservations.stream()
+                .filter(r -> Objects.equals(r.getDate(), date))
+                .collect(Collectors.toList());
     }
 }

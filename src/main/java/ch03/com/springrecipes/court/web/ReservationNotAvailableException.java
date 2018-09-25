@@ -1,4 +1,4 @@
-package ch03.com.springrecipes.court.service;
+package ch03.com.springrecipes.court.web;
 
 import java.time.LocalDate;
 
