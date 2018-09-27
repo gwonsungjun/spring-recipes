@@ -6,6 +6,7 @@ import ch04.com.springrecipes.court.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,14 +29,31 @@ public class RestMemberController {
         this.memberService = memberService;
     }
 
-    @RequestMapping("/members")
-    @ResponseBody
-    public String getRestMembers(Model model){
+/*    @RequestMapping(value = "/members", produces = MediaType.APPLICATION_XML_VALUE)
+    //@ResponseBody
+    public String getRestMemberXml(Model model){
         Members members = new Members();
         members.addMembers(memberService.findAll());
         model.addAttribute("members", members);
         //return "membertemplate";
-        return "members";
+        //return "members";
+        return "xmlmembertemplate";
+    }
+
+    @RequestMapping(value = "/members", produces = MediaType.APPLICATION_JSON_VALUE)
+    public String getRestMemberJson(Model model) {
+        Members members = new Members();
+        members.addMembers(memberService.findAll());
+        model.addAttribute("members", members);
+        return "jsonmembertemplate";
+    }*/
+
+    @RequestMapping("/members")
+    @ResponseBody
+    public Members getRestMembers() {
+        Members members = new Members();
+        members.addMembers(memberService.findAll());
+        return members;
     }
 
     @RequestMapping("/member/{memberid}")

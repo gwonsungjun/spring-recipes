@@ -2,6 +2,7 @@ package ch03.com.springrecipes.court.web;
 
 
 import ch03.com.springrecipes.court.config.CourtConfiguration;
+import ch04.com.springrecipes.court.config.CourtRestConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -13,9 +14,13 @@ public class CourtWebApplicationInitializer extends AbstractAnnotationConfigDisp
         return null;
     }
 
+
+    /*protected Class<?>[] getServletConfigClasses() {
+        return new Class[]{CourtConfiguration.class};
+    }*/
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[]{CourtConfiguration.class};
+        return new Class[]{CourtRestConfiguration.class};
     }
 
     @Override
