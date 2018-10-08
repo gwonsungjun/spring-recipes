@@ -1,4 +1,4 @@
-package cho09.com.springrecipes.domin;
+package ch09.com.springrecipes.domin;
 
 public class Vehicle {
     private String vehicleNo;

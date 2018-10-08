@@ -1,6 +1,6 @@
-package cho09.com.springrecipes.dao;
+package ch09.com.springrecipes.dao;
 
-import cho09.com.springrecipes.domin.Vehicle;
+import ch09.com.springrecipes.domin.Vehicle;
 
 import java.util.List;
 
